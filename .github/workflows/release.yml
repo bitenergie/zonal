@@ -45,7 +45,27 @@ jobs:
       - name: Keep only the listing for Pages (the zip lives on the Release)
         shell: bash
         run: rm repo/*.zip
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repo-listing
+          path: repo
+          if-no-files-found: error
+
+  # Pages needs the artifact built on Linux (upload-pages-artifact is unreliable on Windows runners),
+  # so the Windows job hands the listing over as a plain artifact.
+  pages:
+    needs: release
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: repo-listing
+          path: repo
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: repo
       - uses: actions/deploy-pages@v4
+        id: deployment
