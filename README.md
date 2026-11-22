@@ -18,7 +18,7 @@ https://bitenergie.github.io/zonal/index.json
 ```
 
 then search for **Zonal** and install. Or drag the zip from the
-[Releases](../../releases) page into Blender.
+[Releases](https://github.com/bitenergie/zonal/releases/latest) page into Blender.
 
 ## Develop
 
@@ -40,7 +40,7 @@ writes `repo/` (one zip per platform, `index.json`, `index.html`). Pushing a `vX
 listing published on GitHub Pages. Bump the version in `pyproject.toml`, `blender_manifest.toml` and `__init__.py`
 together (`tests/test_manifest.py` checks they match). See [docs/](docs/) for details.
 
-License: GPL-3.0-or-later.
+License: GPL-3.0-or-later. Bundled third-party software (OpenStudio, BSD-3-Clause variant) is listed in [THIRD_PARTY_NOTICES.md](src/zonal/THIRD_PARTY_NOTICES.md).
 
 ## Disclaimer
 
