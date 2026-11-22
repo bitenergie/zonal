@@ -1,0 +1,37 @@
+schema_version = "1.0.0"
+
+id = "zonal"
+version = "0.1.0-beta.1"
+name = "Zonal"
+tagline = "Building energy modeling for Blender, exports OpenStudio .osm"
+maintainer = "Marco Conte <bit@bitenergie.ch>"
+type = "add-on"
+
+website = "https://openstudio.net"
+tags = ["Import-Export"]
+
+blender_version_min = "5.0.0"
+license = ["SPDX:GPL-3.0-or-later"]
+copyright = ["2026 Marco Conte"]
+
+# openstudio python bindings. Windows: cp313 (Blender 5.x only). Linux/macOS: one py3-none wheel per platform.
+# Run `uv run python scripts/fetch_wheels.py` first; `build --split-platforms` makes one zip per platform.
+platforms = ["windows-x64", "linux-x64", "linux-arm64", "macos-x64", "macos-arm64"]
+wheels = [
+  "./wheels/openstudio-3.11.0-cp313-cp313-win_amd64.whl",
+  "./wheels/openstudio-3.11.0-py3-none-manylinux1_x86_64.whl",
+  "./wheels/openstudio-3.11.0-py3-none-manylinux2014_aarch64.whl",
+  "./wheels/openstudio-3.11.0-py3-none-macosx_10_9_x86_64.whl",
+  "./wheels/openstudio-3.11.0-py3-none-macosx_11_0_arm64.whl",
+]
+[permissions]
+files = "Export .osm, read .osm templates, .epw weather and .sql results"
+network = "Download BCL weather files (Scripts panel)"
+
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "*.pyc",
+  "/*.zip",
+  ".*",
+]

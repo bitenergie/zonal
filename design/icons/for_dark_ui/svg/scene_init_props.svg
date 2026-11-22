@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-1104,-624)">
+        <g id="scene_init_props">
+            <rect x="1104" y="624" width="128" height="128" style="fill:none;"/>
+            <path d="M1124,656L1134.8,656M1155.2,656L1196,656M1124,680L1164.8,680M1185.2,680L1196,680M1124,704L1143.8,704M1164.2,704L1196,704" style="fill:none;stroke:rgb(232,232,232);stroke-width:8px;"/>
+            <path d="M1155.2,656C1155.2,661.633 1150.633,666.2 1145,666.2C1139.367,666.2 1134.8,661.633 1134.8,656C1134.8,650.367 1139.367,645.8 1145,645.8C1150.633,645.8 1155.2,650.367 1155.2,656ZM1185.2,680C1185.2,685.633 1180.633,690.2 1175,690.2C1169.367,690.2 1164.8,685.633 1164.8,680C1164.8,674.367 1169.367,669.8 1175,669.8C1180.633,669.8 1185.2,674.367 1185.2,680ZM1164.2,704C1164.2,709.633 1159.633,714.2 1154,714.2C1148.367,714.2 1143.8,709.633 1143.8,704C1143.8,698.367 1148.367,693.8 1154,693.8C1159.633,693.8 1164.2,698.367 1164.2,704Z" style="fill:none;stroke:rgb(32,190,200);stroke-width:8px;"/>
+            <path d="M1202,700L1202,742M1180.8,721L1223.2,721" style="fill:none;stroke:rgb(32,190,200);stroke-width:8px;"/>
+        </g>
+    </g>
+</svg>

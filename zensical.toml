@@ -1,0 +1,129 @@
+[project]
+site_name = "Zonal"
+site_description = "Blender add-on that exports a scene to an OpenStudio .osm"
+copyright = """Made with &hearts; by <a href="https://github.com/bitenergie">BitEnergie</a> &middot; &copy; 2026 &middot; GPL-3.0-or-later"""
+docs_dir = "docs"
+site_dir = "site"
+extra_css = [
+  "https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css",
+  "stylesheets/extra.css",
+]
+extra_javascript = [
+  "https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js",
+  "javascripts/glightbox-init.js",
+  "javascripts/download-button.js",
+]
+nav = [
+  { "Home" = "index.md" },
+  { "Get started" = "get-started.md" },
+  { "Usage" = [
+    { "Interface guide" = "interface-guide.md" },
+    { "User scripts" = "user-scripts.md" },
+    { "Cheat sheet" = "cheat-sheet.md" },
+  ] },
+  { "Dev" = [
+    { "Setup" = "dev/setup.md" },
+    { "Architecture" = "dev/architecture.md" },
+    { "Extension repository" = "dev/extension-repository.md" },
+    { "API reference" = "autoapi/" },
+  ] },
+]
+
+[project.theme]
+custom_dir = "docs/overrides"
+logo = "img/logo.svg"
+favicon = "img/logo.svg"
+features = [
+  "navigation.instant",
+  "navigation.tabs",
+  "navigation.sections",
+  "navigation.top",
+  "content.code.copy",
+]
+scheme = "default"
+
+# Palette toggle for light mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+palette.primary = "indigo"
+palette.accent = "deep purple"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+# Palette toggle for dark mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+palette.primary = "indigo"
+palette.accent = "deep purple"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+
+[project.extra]
+generator = false
+
+[project.markdown_extensions]
+# Python-Markdown
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
+sane_lists = {}
+toc.permalink = true
+# PyMdown
+pymdownx.arithmatex.generic = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys.key_map = { lmb = "LMB", mmb = "MMB", rmb = "RMB", numpad-period = "Num .", numpad-slash = "Num /", numpad-0 = "Num 0", numpad-1 = "Num 1", numpad-2 = "Num 2", numpad-3 = "Num 3", numpad-4 = "Num 4", numpad-5 = "Num 5", numpad-6 = "Num 6", numpad-7 = "Num 7", numpad-8 = "Num 8", numpad-9 = "Num 9" }
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.saneheaders = {}
+pymdownx.smartsymbols = {}
+pymdownx.snippets.base_path = ["."] # --8<-- "src/zonal/blender_manifest.toml"
+pymdownx.snippets.check_paths = true
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}
+
+# --- API reference (mkdocstrings) ---------------------------------------------
+# api-autonav generates the pages under docs/reference/ and their nav entries.
+# Griffe analyses statically, so bpy/openstudio need not be importable.
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["src"]
+inventories = ["https://docs.python.org/3/objects.inv"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+docstring_style = "google"
+show_source = false
+show_root_heading = true
+show_symbol_type_heading = true
+members_order = "source"
+show_if_no_docstring = true
+separate_signature = true
+merge_init_into_class = true
+
+# [project.plugins.api-autonav]
+# modules = ["src/zonal"]
+# api_root_uri = "reference"
+
+#mkdocs-autoapi does the same job as api-autonav; enable only one of them or pages get generated twice.
+[project.plugins.mkdocs-autoapi]
+autoapi_dir = "src"
+autoapi_ignore = ["**/wheels/**"]
+autoapi_add_nav_entry = false     # the API reference is listed under Dev in nav

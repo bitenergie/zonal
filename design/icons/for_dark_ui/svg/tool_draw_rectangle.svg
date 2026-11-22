@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-224,-24)">
+        <g id="tool_draw_rectangle">
+            <rect x="224" y="24" width="128" height="128" style="fill:none;"/>
+            <path d="M240,44L312,44L312,100L240,100L240,44ZM296,100L296,140.8L306.88,130.6L315.04,147.6L323.2,144.2L315.04,127.2L330,127.2L296,100Z" style="fill:none;stroke:rgb(232,232,232);stroke-width:8px;"/>
+            <path d="M244,44C244,46.209 242.209,48 240,48C237.791,48 236,46.209 236,44C236,41.791 237.791,40 240,40C242.209,40 244,41.791 244,44ZM316,44C316,46.209 314.209,48 312,48C309.791,48 308,46.209 308,44C308,41.791 309.791,40 312,40C314.209,40 316,41.791 316,44ZM316,100C316,102.209 314.209,104 312,104C309.791,104 308,102.209 308,100C308,97.791 309.791,96 312,96C314.209,96 316,97.791 316,100ZM244,100C244,102.209 242.209,104 240,104C237.791,104 236,102.209 236,100C236,97.791 237.791,96 240,96C242.209,96 244,97.791 244,100Z" style="fill:none;stroke:rgb(32,190,200);stroke-width:8px;"/>
+        </g>
+    </g>
+</svg>

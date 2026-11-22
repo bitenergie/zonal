@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-1280,-624)">
+        <g id="logo">
+            <rect x="1280" y="624" width="128" height="128" style="fill:none;"/>
+            <path d="M1344,636L1389.2,662L1344,688L1298.8,662L1344,636Z" style="fill:rgb(122,190,66);stroke:rgb(122,190,66);stroke-width:2px;"/>
+            <path d="M1298.8,662L1344,688L1344,740L1298.8,714L1298.8,662Z" style="fill:rgb(22,170,175);stroke:rgb(22,170,175);stroke-width:2px;"/>
+            <path d="M1344,688L1389.2,662L1389.2,714L1344,740L1344,688Z" style="fill:rgb(10,138,160);stroke:rgb(10,138,160);stroke-width:2px;"/>
+            <path d="M1354,654L1324,694L1342,694L1334,726L1366,682L1347.2,682L1354,654Z" style="fill:white;stroke:white;stroke-width:2px;"/>
+        </g>
+    </g>
+</svg>

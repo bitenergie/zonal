@@ -1,0 +1,36 @@
+# Environments / caches
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.cache/
+.coverage
+typings/
+
+# Build output
+dist/
+repo/
+site/
+src/zonal/wheels/
+*.zip
+
+# Local tooling / personal config
+.claude/
+.mcp.json
+.vscode/
+
+# Generated or local data (the bundled templates are re-included below)
+*.osm
+*.gltf
+*.blend
+*.blend1
+*.sql
+*.epw
+*.afdesign
+!design/**/*.afdesign
+!src/zonal/**/*.osm
+!tests/data/*.osm
+!tests/data/*.gltf
+
+# Local-only reference material
+reference/

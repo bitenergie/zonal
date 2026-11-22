@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-48,-424)">
+        <g id="weather_reload">
+            <rect x="48" y="424" width="128" height="128" style="fill:none;"/>
+            <path d="M82.6,505C63.9,505 62.2,479.5 80.9,479.5C82.6,455.7 113.2,450.6 120,469.3C140.4,464.2 152.3,491.4 131.9,505L82.6,505Z" style="fill:none;stroke:rgb(58,58,62);stroke-width:8px;"/>
+            <path d="M163.038,510.07C168.054,517.233 168.054,526.767 163.038,533.93C158.023,541.093 149.063,544.354 140.617,542.091C132.17,539.828 126.041,532.524 125.279,523.813C124.517,515.102 129.285,506.844 137.21,503.149M130.786,516.925L137.21,503.149L122.527,499.215" style="fill:none;stroke:rgb(32,190,200);stroke-width:8px;"/>
+        </g>
+    </g>
+</svg>

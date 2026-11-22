@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-48,-624)">
+        <g id="search_report">
+            <rect x="48" y="624" width="128" height="128" style="fill:none;"/>
+            <path d="M96,660L152,660M96,688L152,688M96,716L136,716" style="fill:none;stroke:rgb(58,58,62);stroke-width:8px;"/>
+            <path d="M78,660C78,662.209 76.209,664 74,664C71.791,664 70,662.209 70,660C70,657.791 71.791,656 74,656C76.209,656 78,657.791 78,660ZM78,688C78,690.209 76.209,692 74,692C71.791,692 70,690.209 70,688C70,685.791 71.791,684 74,684C76.209,684 78,685.791 78,688ZM78,716C78,718.209 76.209,720 74,720C71.791,720 70,718.209 70,716C70,713.791 71.791,712 74,712C76.209,712 78,713.791 78,716Z" style="fill:none;stroke:rgb(32,190,200);stroke-width:8px;"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,84 @@
+[project]
+name = "zonal"
+version = "0.1.0-beta.1"
+requires-python = ">=3.13,<3.14"
+dependencies = ["openstudio==3.11.0"]
+
+[dependency-groups]
+dev = [
+    "bpy==5.3.0",
+    "numpy>=2.4.6",
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.4",
+]
+docs = [
+    "mkdocs-api-autonav>=0.4.0",
+    "mkdocs-autoapi>=0.4.1",
+    "mkdocstrings-python>=2.0.11",
+    "zensical>=0.1.1",
+]
+
+[tool.uv]
+required-environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+default-groups = ["dev", "docs"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests"]
+extend-exclude = ["typings", "reference"]
+
+[tool.ruff.lint]
+ignore = ["C408", "RUF012", "SIM118", "E731", "E701", "E702",
+    # best-effort bpy/openstudio calls intentionally swallow errors
+    "BLE001", "S110", "S112"]
+
+# Blender declares properties as annotations (`x: EnumProperty(...)`), which is valid for bpy.
+[tool.ty.environment]
+# fake-bpy-module stubs (kept out of the venv: they would clash with the real bpy wheel).
+# Recreate: uv pip install --no-deps --target typings fake-bpy-module
+extra-paths = ["typings"]
+
+[tool.ty.rules]
+invalid-type-form = "ignore"
+# Blender/OpenStudio are dynamic: custom Scene/Object properties (`osm_*`), operator mixins, `gltf.__new__`
+# stubs, Optional layouts and UserScript.run(**kwargs) overrides cannot be expressed in the stubs.
+missing-attribute = "ignore"
+missing-union-attribute = "ignore"
+invalid-assignment = "ignore"
+invalid-argument-type = "ignore"
+lost-keyword-for-regular-parameter = "ignore"
+incompatible-method-override = "ignore"
+
+[tool.coverage.run]
+source = ["zonal"]
+omit = ["*/wheels/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+exclude_also = ["if __name__ == .__main__.:", "pragma: no cover"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["RUF059"]
+
+[tool.ty.src]
+exclude = ["typings", "reference", ".venv"]
+
+[[tool.ty.overrides]]
+include = ["tests/**", "scripts/**"]
+
+[tool.ty.overrides.rules]
+not-subscriptable = "ignore"
+not-iterable = "ignore"
+unsupported-operator = "ignore"
+import-not-found = "ignore"
+redundant-condition = "ignore"

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-1280,-24)">
+        <g id="panel_inspector">
+            <rect x="1280" y="24" width="128" height="128" style="fill:none;"/>
+            <path d="M1302,40L1338,40C1341.314,40 1344,42.686 1344,46L1344,62C1344,65.314 1341.314,68 1338,68L1302,68C1298.686,68 1296,65.314 1296,62L1296,46C1296,42.686 1298.686,40 1302,40ZM1312,68L1312,124M1312,92L1336,92M1312,124L1336,124" style="fill:none;stroke:rgb(58,58,62);stroke-width:8px;"/>
+            <path d="M1342,78L1386,78C1389.314,78 1392,80.686 1392,84L1392,100C1392,103.314 1389.314,106 1386,106L1342,106C1338.686,106 1336,103.314 1336,100L1336,84C1336,80.686 1338.686,78 1342,78ZM1342,110L1386,110C1389.314,110 1392,112.686 1392,116L1392,132C1392,135.314 1389.314,138 1386,138L1342,138C1338.686,138 1336,135.314 1336,132L1336,116C1336,112.686 1338.686,110 1342,110Z" style="fill:none;stroke:rgb(32,190,200);stroke-width:8px;"/>
+        </g>
+    </g>
+</svg>

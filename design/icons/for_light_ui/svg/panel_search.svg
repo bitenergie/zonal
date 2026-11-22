@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-1104,-24)">
+        <g id="panel_search">
+            <rect x="1104" y="24" width="128" height="128" style="fill:none;"/>
+            <path d="M1192,78C1192,96.778 1176.778,112 1158,112C1139.222,112 1124,96.778 1124,78C1124,59.222 1139.222,44 1158,44C1176.778,44 1192,59.222 1192,78ZM1183.2,103.2L1214,134" style="fill:none;stroke:rgb(58,58,62);stroke-width:8px;"/>
+            <path d="M1142,88L1150,68L1174,68L1166,88L1142,88Z" style="fill:none;stroke:rgb(32,190,200);stroke-width:8px;"/>
+        </g>
+    </g>
+</svg>
