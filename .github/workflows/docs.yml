@@ -17,11 +17,11 @@ jobs:
     steps:
       - uses: actions/configure-pages@v6
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
-        with:
-          python-version: 3.x
-      - run: pip install zensical
-      - run: zensical build --clean 
+      - uses: astral-sh/setup-uv@v6
+      - run: uv python install 3.13
+      # docs group only: zensical + mkdocstrings + autoapi (griffe is static, bpy/openstudio are not needed)
+      - run: uv sync --only-group docs --no-install-project --python 3.13 --frozen
+      - run: uv run --no-sync zensical build --clean
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site

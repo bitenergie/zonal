@@ -69,6 +69,9 @@ exclude_also = ["if __name__ == .__main__.:", "pragma: no cover"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["RUF059"]
+# Dev-only docs scripts: run inside a live Blender via exec() and share one namespace (names come from
+# docs_screencast.py), with hard-coded local paths.
+"scripts/docs_*.py" = ["F821", "F841", "S102", "SIM115", "B008"]
 
 [tool.ty.src]
 exclude = ["typings", "reference", ".venv"]
