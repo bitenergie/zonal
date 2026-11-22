@@ -944,7 +944,7 @@ class SCENE_PT_openstudio(PanelIcon, bpy.types.Panel):
     def draw(self, context):
         self.layout.use_property_split = True
         self.layout.use_property_decorate = False
-        sc, col = context.scene, self.layout.column()
+        col = self.layout.column()
         ok, msg = backend_status()
         if not ok:  # the version line is gone; still surface a missing backend
             col.label(text=msg, icon="ERROR")

@@ -9,7 +9,6 @@ scripts/encode_screencast.py (ffmpeg) turns that into the MP4 / WebP. Poll .cach
 
 import json
 import math
-import os
 import traceback
 from pathlib import Path
 
@@ -35,10 +34,10 @@ props_area = next(a for a in screen.areas if a.type == "PROPERTIES")
 space = area3d.spaces.active
 r3d = space.region_3d
 
-from bl_ext.user_default.zonal.blender import modeling as m_modeling  # noqa: E402
-from bl_ext.user_default.zonal.blender import props as m_props  # noqa: E402
-from bl_ext.user_default.zonal.blender import tools as m_tools  # noqa: E402
-from bl_ext.user_default.zonal.blender import ui as m_ui  # noqa: E402
+from bl_ext.user_default.zonal.blender import modeling as m_modeling
+from bl_ext.user_default.zonal.blender import props as m_props
+from bl_ext.user_default.zonal.blender import tools as m_tools
+from bl_ext.user_default.zonal.blender import ui as m_ui
 
 P = {
     "library": m_props.VIEW3D_PT_osm_library,
@@ -56,10 +55,10 @@ P = {
     "p_boundary": m_props.VIEW3D_PT_osm_properties_boundary,
 }
 # every Zonal sidebar panel that is registered now (so we can hide the rest and restore at the end)
-from bl_ext.user_default.zonal.blender import inspector as m_insp  # noqa: E402
-from bl_ext.user_default.zonal.blender import results as m_res  # noqa: E402
-from bl_ext.user_default.zonal.blender import scripts as m_scr  # noqa: E402
-from bl_ext.user_default.zonal.blender import search as m_search  # noqa: E402
+from bl_ext.user_default.zonal.blender import inspector as m_insp
+from bl_ext.user_default.zonal.blender import results as m_res
+from bl_ext.user_default.zonal.blender import scripts as m_scr
+from bl_ext.user_default.zonal.blender import search as m_search
 
 OTHER = [
     m_search.VIEW3D_PT_osm_search,

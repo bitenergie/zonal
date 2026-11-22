@@ -405,15 +405,10 @@ def test_panels(clean_scene):
     class SC:
         scene = bpy.context.scene
 
-    for with_north in (False, True):
-        if with_north:
-            SC.scene["northAxis"] = 1.0
-        else:
-            SC.scene.pop("northAxis", None)
-        p = type("P", (), {"layout": Sub()})
-        ui.SCENE_PT_openstudio.draw(p, SC)
-        assert ("prop" in p.layout.log) == with_north
-        assert ("scene.osm_init_props" in p.layout.log) == (not with_north)
+    p = type("P", (), {"layout": Sub()})
+    ui.SCENE_PT_openstudio.draw(p, SC)
+    for op in ("export_scene.openstudio_osm", "import_scene.openstudio_osm", "scene.osm_open_in_app"):
+        assert op in p.layout.log
 
 
 def test_icons(clean_scene, monkeypatch):
