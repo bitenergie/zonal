@@ -48,6 +48,11 @@ Blender 4.5 (older than `blender_version_min = 5.0.0`) or another platform gets 
 uv run python scripts/make_repo.py --base-url https://github.com/OWNER/REPO/releases/download/v0.1.0
 ```
 
-`--base-url` rewrites `archive_url` so the zips (one per platform, built with `--split-platforms`) can live on a GitHub Release while `index.json` is served from
-GitHub Pages (Pages and git reject files that large). The tag-triggered workflow `.github/workflows/release.yml` does
-this automatically; the repository URL for Blender is then `https://OWNER.github.io/REPO/index.json`.
+`--base-url` rewrites `archive_url` to absolute Release URLs, so the zips (one per platform, built with `--split-platforms`)
+and `index.json` can all live on the same GitHub Release. The tag-triggered workflow `.github/workflows/release.yml` does
+this automatically and attaches both. The repository URL for Blender is then
+`https://github.com/OWNER/REPO/releases/latest/download/index.json`: GitHub redirects `latest` to the newest release, and each
+`index.json` points at the zips of its own tag. GitHub Pages is not used for the listing (it hosts the docs only).
+
+!!! note
+    `latest` ignores draft and pre-release releases; don't tick *pre-release* on the GitHub Release.

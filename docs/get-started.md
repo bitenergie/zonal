@@ -9,7 +9,7 @@ if you come from SketchUp, read [Blender in five minutes](#blender-in-five-minut
 
 - **Blender 5.0 or newer** (free, [blender.org](https://www.blender.org/download/)). The extension bundles the OpenStudio bindings.
 - **Install Zonal**: *Edit > Preferences > Get Extensions > Repositories > + > Add Remote Repository*, paste
-  `https://bitenergie.github.io/zonal/index.json`, then search for **Zonal** and click **Install**.
+  `https://github.com/bitenergie/zonal/releases/latest/download/index.json`, then search for **Zonal** and click **Install**.
   Or drag the `zonal-<version>.zip` from the [Releases](https://github.com/bitenergie/zonal/releases) page into the Blender window.
   See [Dev > Setup](dev/setup.md) to build the zip yourself.
 - **A mouse with a middle button** makes navigation easy. On a laptop, enable *Edit > Preferences > Input > Emulate 3 Button Mouse*

@@ -14,7 +14,7 @@ Add the repository in Blender: *Preferences > Get Extensions > Repositories > + 
 
 ```
 
-https://bitenergie.github.io/zonal/index.json
+https://github.com/bitenergie/zonal/releases/latest/download/index.json
 ```
 
 then search for **Zonal** and install. Or drag the zip from the
@@ -36,8 +36,8 @@ uv run python scripts/make_repo.py --base-url https://github.com/bitenergie/zona
 ```
 
 writes `repo/` (one zip per platform, `index.json`, `index.html`). Pushing a `vX.Y.Z` tag runs
-[.github/workflows/release.yml](.github/workflows/release.yml): tests, build, zip attached to the GitHub Release,
-listing published on GitHub Pages. Bump the version in `pyproject.toml`, `blender_manifest.toml` and `__init__.py`
+[.github/workflows/release.yml](.github/workflows/release.yml): tests, build, then the zips and `index.json` are attached to the
+GitHub Release (GitHub Pages is only used for the docs). Bump the version in `pyproject.toml`, `blender_manifest.toml` and `__init__.py`
 together (`tests/test_manifest.py` checks they match). See [docs/](docs/) for details.
 
 License: GPL-3.0-or-later. Bundled third-party software (OpenStudio, BSD-3-Clause variant) is listed in [THIRD_PARTY_NOTICES.md](src/zonal/THIRD_PARTY_NOTICES.md).
