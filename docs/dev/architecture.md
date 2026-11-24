@@ -1,9 +1,13 @@
 # Architecture
 
-The add-on is the **inverse of OpenStudio's glTF forward translator**. OpenStudio turns a model into glTF with
-`extras` (see `reference/openstudio_gltf/`, a copy of the C++ source and the `*.extras.schema.json` files); this add-on reads
-the Blender scene with the same custom properties and rebuilds the model. That source is the specification for the property keys.
-glTF itself is a standalone feature (operators `export_scene.openstudio_gltf` and `import_scene.openstudio_gltf`), not part of the `.osm` export.
+The add-on exports the Blender scene to an OpenStudio model (`.osm`, plus gbXML, SDD and IDF through the same model) and imports those formats back
+into Blender. The export **does not go through glTF**: `scene.collect_scene` reads the evaluated meshes and their custom properties directly and
+`osm_builder` builds the model with the OpenStudio API.
+
+The custom properties follow the `extras` schema of OpenStudio's glTF forward translator (model → glTF). Its C++ source and the
+`*.extras.schema.json` files are kept in `reference/openstudio_gltf/` and are the **specification for the property keys** (`surfaceType`, `spaceName`, ...);
+the add-on is in that sense the inverse of that translator. glTF itself is a separate, standalone feature (operators `export_scene.openstudio_gltf`
+and `import_scene.openstudio_gltf`), not part of the `.osm` export.
 
 ## Two layers
 
@@ -11,9 +15,9 @@ The package `src/zonal/` is split so that everything worth testing runs without 
 
 | Layer | Modules | Imports |
 | --- | --- | --- |
-| **Core** (`core/`) | `geometry`, `gltf_reader`, `schema`, `tools_core`, `tools_geometry`, `search_core`, `results_core`, `inspector_schema`, `inspector_tree`, `schedule_rules`, `scripts_core`, `diagram_core`, `info_core`, `snap_core`, `epw`, `openstudio_env` | no `openstudio` at import time; numpy and, where faster, `mathutils` / `bpy` are allowed |
+| **Core** (`core/`) | `geometry`, `gltf_reader`, `schema`, `tools_core`, `tools_geometry`, `search_core`, `results_core`, `inspector_schema`, `inspector_tree`, `inspector_import`, `schedule_rules`, `scripts_core`, `diagram_core`, `volume_core`, `info_core`, `snap_core`, `epw`, `openstudio_env` | no `openstudio` at import time; numpy and, where faster, `mathutils` / `bpy` are allowed |
 | **OpenStudio** (`core/`) | `osm_builder`, `osm_reader` | `openstudio` bindings, loaded lazily through `openstudio_env.load` |
-| **Blender UI** (`blender/`) | `ui`, `scene`, `tools`, `props`, `surface_ops`, `search`, `inspector`, `results`, `scripts`, `modeling`, `schedule_ui`, `widgets`, `icons` | `bpy` |
+| **Blender UI** (`blender/`) | `ui`, `scene`, `tools`, `props`, `surface_ops`, `search`, `inspector`, `results`, `scripts`, `modeling`, `schedule_ui`, `widgets`, `icons`, `text_templates` | `bpy` |
 
 `__init__` imports `blender.ui` lazily so the package stays importable in pytest. Keep logic that needs testing in the
 pure modules; each Blender module is a thin layer over a `*_core` / `*_schema` partner.
@@ -84,8 +88,12 @@ glTF is separate: `gltf_reader.read_gltf` parses a glTF file (Y-up files written
 ### Repairs
 
 Like the SketchUp plug-in, `osm_builder` repairs geometry and adds a `BuildReport` warning for every fix: `sanitize` (drop polygons with fewer than 3 vertices,
-project out-of-plane vertices), `orient` (reverse upside-down Floor / RoofCeiling), `locate_parent` / `conform_to_parent` for sub surfaces, and `check_adjacency`
-(every `Surface` boundary needs a partner pointing back).
+project out-of-plane vertices), `orient` (reverse upside-down Floor / RoofCeiling), `locate_parent` / `conform_to_parent` for sub surfaces (strict match first,
+then a relaxed one: flipped, or within 5 cm of the base plane, is fixed; a sub surface as big as its base is skipped), `check_adjacency` and
+`check_sub_adjacency` (every `Surface` boundary needs a partner pointing back). Sub surfaces that are `contained` (also with an explicit `surfaceName`) or
+`dividing` (an edge-to-edge strip that splits its wall) are rejected with a warning. `finalize_zones` runs after the store: with
+`BuildOptions.new_zone_for_space` (preference `new_zone_for_space`) zone-less spaces get a thermal zone, and every zone gets a default `RenderingColor`;
+`sync_site` copies the weather file location to the Site.
 
 ### From triangles to surfaces (`geometry.py`)
 
@@ -128,7 +136,7 @@ hard to check and reset for users, so they are not stored per surface any more.
   used to write per-surface values (Create Spaces From Diagram, Set Attributes for Selected Spaces, Set as Interior Partition, the library "New" and "Clear"
   buttons, `object.osm_set_prop`) write to the store or move the object to a collection instead.
 - **Import** (`ui.build_scene`, shared by `.osm`, gbXML, IDF, SDD and glTF) puts these values on the space's store item (air loops on the zone's item),
-  and creates the space collection; it does not write them on the surfaces. `osm_reader` now reads each zone's air loops.
+  and creates the space collection; it does not write them on the surfaces. `osm_reader` reads each zone's air loops.
 - **Export** reads the store. Old scenes may still carry per-surface values, so `ui.default_space_overrides` uses them as a fallback only: it takes one value
   per space (the first non-empty one, objects sorted by name), forces it onto all surfaces of the space through the `!space` key of the overrides
   (`scene.object_faces` applies it after the object's own extras) and records a warning in `ui.SPACE_CONFLICTS` when the surfaces disagree. The same
@@ -165,7 +173,9 @@ origin and relative north are set (`apply_space_transform`).
 ### Templates
 
 `BuildOptions.template_osm` clones a template model and strips its spaces, zones, stories and so on, keeping space types, construction sets, constructions (with
-materials and schedules). `templates/MinimalTemplate.osm` is the bundled default.
+materials and schedules). `templates/MinimalTemplate.osm` is the bundled default. `BuildOptions.extra_templates` (`[(path, [types])]`, scene property
+`osm_extra_templates`, operator `scene.osm_import_resources`) merges only the chosen categories (`SpaceType`, `DefaultConstructionSet`, `Construction`,
+`Schedule`) of further files; the first file wins on name clashes. An `.idf` template is translated first (`osm_reader.idf_to_osm_file`).
 
 ## Import pipeline
 
@@ -192,7 +202,8 @@ collection per space. gbXML has no pipeline of its own: it goes through the Open
 | Inspector | `inspector` | `inspector_schema` (field table `TYPES`) |
 | Results | `results` | `results_core` (`SqlResults`, `match_objects`, `value_range`) |
 | Scripts | `scripts` | `scripts_core` (`UserScript`, `ScriptContext`, registry; scripts in `user_scripts/<group>/`) |
-| Spaces & Groups, Info Tool | `modeling` | `diagram_core`, `info_core` |
+| Spaces & Groups (Create Spaces From Diagram / Mesh), Info Tool | `modeling` | `diagram_core`, `volume_core`, `info_core` |
+| Schedule rules (Inspector) | `schedule_ui` | `schedule_rules` (builder: `osm_builder.rules_schedule`) |
 
 Properties of surfaces are Object custom properties; the `osm_<key>` properties registered on `bpy.types.Object` are proxies that read and write them,
 which gives dropdowns and search fields instead of free text. The exceptions are `spaceName` and the space attributes, which are proxies for the
@@ -204,6 +215,9 @@ Object-backed types (Surface, SubSurface, ShadingSurface, InteriorPartitionSurfa
 (Building, Space, ThermalZone, BuildingStory, BuildingUnit, SpaceType, WeatherFile, Default* sets) live in `Scene.osm_model`, are exported as the scene
 extra `osmModel` (JSON) and applied by `osm_builder.apply_store_resources` / `apply_store_spaces` through the `FieldDef.setter` names.
 To add a type or field, add one entry to `inspector_schema.TYPES`; a test checks that the setter exists in OpenStudio.
+`inspector_import` reads the values of existing OpenStudio objects (for example template constructions) back into the store so the panel shows them.
+Besides plain fields there are the kinds `COLOR` (colour picker) and `RULES` (a JSON rule list on `ScheduleConstant`, built into a `ScheduleRuleset`;
+reading an existing `ScheduleRuleset` back into rules is not implemented).
 
 ### Results
 
@@ -227,6 +241,6 @@ The bindings always run in-process; there is no CLI subprocess backend. The whee
 | `src/zonal/` | the add-on (see above), `blender_manifest.toml`, `templates/`, `icons/`, `wheels/` (git-ignored) |
 | `tests/test_*.py` | pytest unit tests, no Blender needed |
 | `tests/blender_*_smoke.py` | headless end-to-end checks run with `blender -b --factory-startup --python ...` |
-| `scripts/` | `build.py` (extension zip), `fetch_wheels.py`, `make_icons.py`, `docs_screenshots.py`, `serve_repo.py` / `make_repo.py` (extension repository), `dev_reload.py` |
+| `scripts/` | `build.py` (extension zip), `fetch_wheels.py`, `make_icons.py`, `docs_*.py` / `process_*.py` / `encode_screencast.py` (screenshots and screencasts for the docs), `serve_repo.py` / `make_repo.py` (extension repository), `dev_reload.py` |
 | `docs/` | this site (Zensical) |
 | `reference/` | local-only reference material (OpenStudio sources, SketchUp plugin), git-ignored |

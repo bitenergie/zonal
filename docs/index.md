@@ -11,8 +11,9 @@ hide:
 
 # Model buildings in Blender. Simulate in OpenStudio.
 
-Draw spaces, windows and shading surfaces with Blender's tools, describe them with OpenStudio
-properties and export a ready-to-run `.osm` (or gbXML) in one click.
+Zonal lets you build a building energy model in Blender and export it to OpenStudio. Draw or import the geometry,
+assign spaces, zones, constructions and schedules, check the model visually and export it for simulation with
+OpenStudio / EnergyPlus in one click. Existing OpenStudio models can be imported back into Blender to edit them.
 
 [Get started](get-started.md){ .md-button .md-button--primary }
 [Usage guide](interface-guide.md){ .md-button }
@@ -61,7 +62,7 @@ properties and export a ready-to-run `.osm` (or gbXML) in one click.
 
     ---
 
-    `.osm` and gbXML export, plus import of both formats back into Blender.
+    Export to `.osm`, gbXML, SDD and IDF, and import the same formats back into Blender.
 
 </div>
 
@@ -139,15 +140,14 @@ Match Surfaces, window-to-wall ratio, overhangs and site shading. Colours show t
 
 ## Formats
 
-| Direction | Format | File type |
-| --- | --- | --- |
-| Export | OpenStudio Model | `.osm` |
-| Export | gbXML | `.xml` |
-| Export | Standard Data Dictionary (SDD) | `.xml` |
-| Export | EnergyPlus Input Data File (IDF) | `.idf` |
-| Export | glTF (binary or separate files) | `.glb`, `.gltf` |
-| Import | OpenStudio Model, gbXML, glTF | `.osm`, `.xml`, `.glb`, `.gltf` |
-| Results | EnergyPlus SQLite output, displayed as heatmaps and value labels in the viewport | `.sql` |
+| Format | File type | Export | Import |
+| --- | --- | :---: | :---: |
+| OpenStudio Model | `.osm` | :lucide-check: | :lucide-check: |
+| gbXML | `.xml` | :lucide-check: | :lucide-check: |
+| EnergyPlus Input Data File (IDF) | `.idf` | :lucide-check: | :lucide-check: |
+| Standard Data Dictionary (SDD) | `.xml` | :lucide-check: | Result SDD files only |
+| glTF (binary or separate files) | `.glb`, `.gltf` | :lucide-check: | :lucide-check: |
+| EnergyPlus results (SQLite), shown as heatmaps and value labels in the viewport | `.sql` | | :lucide-check: |
 
 Imported models are rebuilt as Blender spaces (collections) and surfaces (mesh objects).
 Templates in `.osm` or `.idf` format provide space types, construction sets and schedules as defaults for a new model.

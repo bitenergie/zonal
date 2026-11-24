@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220" role="img" aria-labelledby="t d">
+  <title id="t">Zonal</title>
+  <desc id="d">Zonal, building energy modeling for Blender</desc>
+  <style>
+    .name { fill: #1b2733; }
+    .tag  { fill: #4b5b6b; }
+    @media (prefers-color-scheme: dark) {
+      .name { fill: #f2f6f9; }
+      .tag  { fill: #a9b8c6; }
+    }
+    text { font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  </style>
+
+  <!-- logo (from docs/img/logo.svg), 128 units scaled to 150 px -->
+  <g transform="translate(150 35) scale(1.172) translate(-1280 -624)">
+    <path d="M1344,636L1389.2,662L1344,688L1298.8,662L1344,636Z" fill="#7abe42" stroke="#7abe42" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M1298.8,662L1344,688L1344,740L1298.8,714L1298.8,662Z" fill="#16aaaf" stroke="#16aaaf" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M1344,688L1389.2,662L1389.2,714L1344,740L1344,688Z" fill="#0a8aa0" stroke="#0a8aa0" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M1354,654L1324,694L1342,694L1334,726L1366,682L1347.2,682L1354,654Z" fill="#fff" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <text class="name" x="335" y="125" font-size="88" font-weight="700" letter-spacing="-2">Zonal</text>
+  <text class="tag" x="338" y="162" font-size="25" font-weight="400">Building energy modeling for Blender</text>
+</svg>

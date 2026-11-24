@@ -33,7 +33,7 @@
 }
 
 /* home page hero */
-.osm-hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2rem; align-items: center; padding: 1.5rem 2rem 2rem; border-radius: 16px;
+.osm-hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); gap: 2rem; align-items: center; padding: 1.5rem 2rem 2rem; border-radius: 16px;
   background: radial-gradient(ellipse at 75% 45%, color-mix(in srgb, var(--md-primary-fg-color) 22%, transparent), transparent 65%),
               linear-gradient(135deg, color-mix(in srgb, var(--md-primary-fg-color) 7%, var(--md-default-bg-color)), var(--md-default-bg-color)); }
 .osm-hero h1 { font-size: 2.2rem; line-height: 1.2; margin-top: 0; }
@@ -146,7 +146,10 @@
   .osm-hero::after, .osm-badge::before, .osm-announce__tag { animation: none; }
   .md-content:has(.osm-hero) * { animation: none !important; transition: none !important; }
 }
-@media (max-width: 44em) { .osm-hero { padding: 1.6rem 1.2rem; } .osm-hero__img img { transform: none; } }
+@media (max-width: 44em) { .osm-hero { padding: 1.6rem 1.2rem; gap: 1.2rem; } .osm-hero__img img { transform: none; } }
+.osm-hero__text, .osm-hero__img { min-width: 0; }
+.osm-hero h1 { overflow-wrap: anywhere; }
+@media (max-width: 26em) { .osm-hero { padding: 1.3rem .9rem; } .osm-hero .md-button { padding: .5em 1.1em; } }
 
 /* header download button */
 .osm-download { display: inline-flex; align-items: center; gap: .4rem; align-self: center; margin: 0 .4rem 0 .8rem; padding: .3rem .95rem; border-radius: 99px;
@@ -155,3 +158,8 @@
 .osm-download:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(192,38,211,.5); }
 .osm-download svg { flex: none; }
 @media (max-width: 44.9375em) { .osm-download span { display: none; } .osm-download { padding: .35rem; margin: 0 .2rem; } }
+
+/* Row of equally sized figures (Get started: render modes) */
+.md-typeset .osm-triptych { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1rem 0; }
+.md-typeset .osm-triptych figure { flex: 1 1 14rem; min-width: 0; margin: 0; }
+.md-typeset .osm-triptych img { width: 100%; height: auto; display: block; border-radius: 6px; }

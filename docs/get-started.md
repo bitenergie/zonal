@@ -1,9 +1,14 @@
+---
+hide:
+  - navigation
+---
+
 # Get started
 
-Build, check and export a two-room model in about 20 minutes. This page assumes you have **never opened Blender**:
-if you come from SketchUp, read [Blender in five minutes](#blender-in-five-minutes) first, then follow the ten steps.
+Build, check and export a two-room model in about 20 minutes. This page is written for **beginners with little or no Blender experience**:
+if Blender is new to you (or you come from SketchUp), read [Blender in five minutes](#blender-in-five-minutes) first, then follow the ten steps.
 
-<video class="osm-video" autoplay loop muted playsinline controls preload="metadata" src="../img/walkthrough.mp4"></video>
+<video class="osm-video" autoplay loop muted playsinline controls preload="metadata" src="img/walkthrough.mp4"></video>
 
 ## Before you begin
 
@@ -176,9 +181,20 @@ These modes never change the exported data, they help you spot a wall typed as a
 
 ![The Rendering panel](img/start/08-rendering-panel.webp){ width="350" }
 
-| Surface Type | Boundary Condition | Thermal Zone |
-| --- | --- | --- |
-| ![Surface type](img/start/08-mode-surface-type.webp) | ![Boundary condition](img/start/08-mode-boundary.webp) | ![Thermal zone](img/start/08-mode-zone.webp) |
+<div class="osm-triptych" markdown>
+<figure markdown>
+![Surface type](img/start/08-mode-surface-type.webp)
+<figcaption>Surface Type</figcaption>
+</figure>
+<figure markdown>
+![Boundary condition](img/start/08-mode-boundary.webp)
+<figcaption>Boundary Condition</figcaption>
+</figure>
+<figure markdown>
+![Thermal zone](img/start/08-mode-zone.webp)
+<figcaption>Thermal Zone</figcaption>
+</figure>
+</div>
 
 Use **Surface Search** to select, for example, all `Floor` surfaces, or all walls that face north.
 
